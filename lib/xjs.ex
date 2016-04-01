@@ -10,7 +10,7 @@ defmodule XJS do
   def compile({:fun, _, tail}) do
     {params, [[do: body]]} = Enum.split tail, -1
     %{
-      type: "ArrowExpression",
+      type: :ArrowExpression,
       params: Enum.map(params, fn x -> compile x  end),
       body: compile(body)
     }
@@ -69,7 +69,7 @@ defmodule XJS do
 
   def test() do
     xjs do
-      0 + 1
+      40 + 2
     end
   end
 end

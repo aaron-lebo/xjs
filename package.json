@@ -1,0 +1,26 @@
+{
+  "name": "xjs",
+  "version": "1.0.0",
+  "description": "**TODO: Add description**",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "xjs": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/lebo/xj.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/lebo/xj/issues"
+  },
+  "homepage": "https://gitlab.com/lebo/xj#README",
+  "dependencies": {
+    "escodegen": "^1.8.0"
+  }
+}
