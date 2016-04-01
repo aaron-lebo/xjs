@@ -26,7 +26,7 @@ defmodule XJS do
     {params, [[do: body]]} = Enum.split(tail, -1)
     [
       type: "ArrowExpression",
-      params: Enum.map(params, &XJS.compile/1),
+      params: Enum.map(params, fn x -> compile(x) end),
       body: compile(body)
     ]
   end
