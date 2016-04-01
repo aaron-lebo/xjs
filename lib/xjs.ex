@@ -39,11 +39,11 @@ defmodule XJS do
     kind in [:con, :let] do
     %{
       type: :VariableDeclaration,
-      declarations: %{
+      declarations: [%{
         type: :VariableDeclarator,
         id: compile(head),
         init: compile(body)
-      },
+      }],
       kind: kind == :con && :const || :let
     }
   end
@@ -70,8 +70,8 @@ defmodule XJS do
   
   def test() do
     xjs do
-      x = 0
-      y = 1
+      let x = 0
+      con y = 1
       x + y
     end
   end
