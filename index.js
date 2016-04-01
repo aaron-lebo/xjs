@@ -11,6 +11,6 @@ stdin.on('data', function(chunk) {
 });
 
 stdin.on('end', function() {
-    var ast = chunks.join();
-    console.log(escodegen.generate(JSON.parse(ast)));
+    var jst = JSON.parse(chunks.join());
+    console.log(escodegen.generate(jst));
 });

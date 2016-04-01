@@ -64,13 +64,14 @@ defmodule XJS do
       {:__block__, _, ast} -> Enum.map ast, fn x -> compile x end
       ast -> compile ast
     end
-    |> Poison.encode!
+    |> Macro.escape
   end
 
   def test() do
     xjs do
       x = 0
-      x
+      y = 1
+      x + y
     end
   end
 end
