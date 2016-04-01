@@ -11,7 +11,7 @@ defmodule XJS do
     {params, [[do: body]]} = Enum.split tail, -1
     %{
       type: :ArrowExpression,
-      params: Enum.map(params, fn x -> compile x  end),
+      params: Enum.map(params, fn x -> compile x end),
       body: compile(body)
     }
   end
@@ -61,7 +61,7 @@ defmodule XJS do
 
   defmacro xjs(do: block) do
     case block do
-      {:__block__, _, ast} -> Enum.map ast, &XJS.compile/1
+      {:__block__, _, ast} -> Enum.map ast, fn x -> compile x end
       ast -> compile ast
     end
     |> Poison.encode!
@@ -69,7 +69,8 @@ defmodule XJS do
 
   def test() do
     xjs do
-      40 + 2
+      x = 0
+      x
     end
   end
 end
