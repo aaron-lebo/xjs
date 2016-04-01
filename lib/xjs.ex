@@ -58,15 +58,16 @@ defmodule XJS do
   def compile(node) do
     %{error: node}
   end
-
+  
   defmacro xjs(do: block) do
     case block do
-      {:__block__, _, ast} -> Enum.map ast, fn x -> compile x end
-      ast -> compile ast
+      {:__block__, _, ast} -> ast
+      ast -> [ast]
     end
+    |> Enum.map(fn x -> compile x end)
     |> Macro.escape
   end
-
+  
   def test() do
     xjs do
       x = 0
