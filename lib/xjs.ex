@@ -23,10 +23,10 @@ defmodule XJS do
   end
 
   def compile({:fun, _, tail}) do
-    {params, [[do: body]]} = Enum.split(tail, -1)
+    {params, [[do: body]]} = Enum.split tail, -1
     [
       type: "ArrowExpression",
-      params: Enum.map(params, fn x -> compile(x) end),
+      params: Enum.map(params, fn x -> compile x end),
       body: compile(body)
     ]
   end
