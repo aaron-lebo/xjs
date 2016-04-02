@@ -1,15 +1,17 @@
 defmodule Mix.Tasks.Xjs do
   use Mix.Task
 
+  @statements [
+    :LetStatement,
+    :VariableDeclaration
+  ]
+
   def run(_) do
     %{
       type: :Program,
       body: Enum.map(XJS.test, fn node ->
         case Map.get node, :type  do
-          type when type in [
-            :LetStatement,
-            :VariableDeclaration
-          ] -> node
+          type when type in @statements -> node
           type -> %{
                type: :ExpressionStatement,
                expression: node

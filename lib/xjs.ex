@@ -10,9 +10,9 @@ defmodule XJS do
   def compile({:fun, _, tail}) do
     {params, [[do: body]]} = Enum.split tail, -1
     %{
-      type: :ArrowExpression,
+      type: :FunctionExpression,
       params: Enum.map(params, fn x -> compile x end),
-      body: compile(body)
+      body: compile body
     }
   end
 
@@ -58,7 +58,7 @@ defmodule XJS do
   def compile(node) do
     %{error: node}
   end
-  
+
   defmacro xjs(do: block) do
     case block do
       {:__block__, _, ast} -> ast
@@ -70,9 +70,7 @@ defmodule XJS do
   
   def test() do
     xjs do
-      let x = 0
-      con y = 1
-      x + y
+      fun a, b, do: a + b
     end
   end
 end
