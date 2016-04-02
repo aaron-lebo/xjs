@@ -13,12 +13,11 @@ defmodule Mix.Tasks.Xjs do
         case Map.get node, :type  do
           type when type in @statements -> node
           type -> %{
-               type: :ExpressionStatement,
-               expression: node
-           }
+                  type: :ExpressionStatement,
+                  expression: node
+              }
         end
-      end
-      )
+      end)
     }
     |> Poison.encode!
     |> IO.puts
