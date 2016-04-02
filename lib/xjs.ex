@@ -67,10 +67,4 @@ defmodule XJS do
     |> Enum.map(fn x -> compile x end)
     |> Macro.escape
   end
-  
-  def test() do
-    xjs do
-      fun a, b, do: a + b
-    end
-  end
 end

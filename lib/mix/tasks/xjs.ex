@@ -7,10 +7,11 @@ defmodule Mix.Tasks.Xjs do
   ]
 
   def run(_) do
+    [{mod, _}] = Code.load_file("lib/index.xjs")
     %{
       type: :Program,
-      body: Enum.map(XJS.test, fn node ->
-        case Map.get node, :type  do
+      body: Enum.map(mod.run, fn node ->
+        case Map.get node, :type do
           type when type in @statements -> node
           _ -> %{
                type: :ExpressionStatement,
