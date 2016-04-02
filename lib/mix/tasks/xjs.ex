@@ -6,8 +6,8 @@ defmodule Mix.Tasks.Xjs do
     :VariableDeclaration
   ]
 
-  def run(_) do
-    [{mod, _}] = Code.load_file("lib/index.xjs")
+  def run([path]) do
+    [{mod, _}] = Code.load_file path
     %{
       type: :Program,
       body: Enum.map(mod.run, fn node ->

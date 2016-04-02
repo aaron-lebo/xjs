@@ -1,5 +1,4 @@
 module.exports = {
-    entry: './lib/index.xjs',
     output: {
         path: 'builds',
         filename: 'builds.js'
