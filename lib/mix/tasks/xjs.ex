@@ -12,10 +12,10 @@ defmodule Mix.Tasks.Xjs do
       body: Enum.map(XJS.test, fn node ->
         case Map.get node, :type  do
           type when type in @statements -> node
-          type -> %{
-                  type: :ExpressionStatement,
-                  expression: node
-              }
+          _ -> %{
+               type: :ExpressionStatement,
+               expression: node
+           }
         end
       end)
     }
