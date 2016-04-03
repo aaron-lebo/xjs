@@ -1,10 +1,45 @@
 defmodule XJS do
-  def compile(value) when
-    is_number(value) or is_bitstring(value) do
+  @statements [
+    :LetStatement,
+    :VariableDeclaration
+  ]
+
+  def compile(value) when is_number(value) or is_bitstring(value) do
     %{
       type: :Literal,
       value: value
     }
+  end
+
+  def compile(node) when is_list(node) do
+    %{
+      type: :ArrayExpression,
+      elements: Enum.map(node, fn n -> compile(n) end)
+    }
+  end
+
+  def compile({:%{}, _, tail}) do
+    %{
+      type: :ObjectExpression,
+      properties: []
+    }
+  end
+
+  def compile({:body, body}) when is_tuple body do
+    compile {:body, [body]}
+  end
+
+  def compile({:body, body}) do
+    Enum.map(body, fn node ->
+      node = compile node
+      case Map.get node, :type do
+        type when type in @statements -> node
+        _ -> %{
+             type: :ExpressionStatement,
+             expression: node
+         }
+      end
+    end)
   end
 
   def compile({:fun, _, tail}) do
@@ -12,7 +47,10 @@ defmodule XJS do
     %{
       type: :FunctionExpression,
       params: Enum.map(params, fn x -> compile x end),
-      body: compile body
+      body: %{
+        type: :BlockStatement,
+        body: compile({:body, body})
+      }
     }
   end
 
@@ -25,8 +63,7 @@ defmodule XJS do
     }
   end
 
-  def compile({operator, _, [left, right]}) when
-    operator in [:*, :/, :+, :-] do
+  def compile({operator, _, [left, right]}) when operator in [:*, :/, :+, :-] do
     %{
       type: :BinaryExpression,
       operator: operator,
@@ -35,8 +72,7 @@ defmodule XJS do
     }
   end
 
-  def compile({kind, _, [{:=, _, [head, body]}]}) when
-    kind in [:con, :let] do
+  def compile({kind, _, [{:=, _, [head, body]}]}) when kind in [:con, :let] do
     %{
       type: :VariableDeclaration,
       declarations: [%{
@@ -56,7 +92,7 @@ defmodule XJS do
   end
 
   def compile(node) do
-    %{error: node}
+    %{error: node} |> IO.inspect
   end
 
   defmacro xjs(do: block) do

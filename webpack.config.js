@@ -8,7 +8,7 @@ module.exports = {
             {
                 test: /\.xjs$/,
                 exclude: /node_modules/,
-                loaders: ['babel?presets[]=es2015', 'xjs-loader']
+                loaders: ['babel?presets[]=es2015', 'jst', 'xjs']
             }
         ]
     }
