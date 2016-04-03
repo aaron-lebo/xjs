@@ -1,4 +1,5 @@
 /_build
+/builds
 /cover
 /deps
 /node_modules
