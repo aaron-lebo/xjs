@@ -4,21 +4,21 @@ defmodule XJS do
     :VariableDeclaration
   ]
 
-  def compile(name) when is_atom(name) do
+  def compile(name) when is_atom name  do
     %{
       type: :Identifier,
-      name: name 
+      name: name
     }
   end
 
-  def compile(value) when is_number(value) or is_bitstring(value) do
+  def compile(value) when is_number value or is_bitstring value do
     %{
       type: :Literal,
       value: value
     }
   end
 
-  def compile(elements) when is_list(elements) do
+  def compile(elements) when is_list elements do
     %{
       type: :ArrayExpression,
       elements: Enum.map(elements, &XJS.compile/1)
