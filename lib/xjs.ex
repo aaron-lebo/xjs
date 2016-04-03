@@ -4,6 +4,13 @@ defmodule XJS do
     :VariableDeclaration
   ]
 
+  def compile(node) when is_atom(node) do
+    %{
+      type: :Identifier,
+      name: node
+    }
+  end
+
   def compile(value) when is_number(value) or is_bitstring(value) do
     %{
       type: :Literal,
@@ -50,6 +57,15 @@ defmodule XJS do
         type: :BlockStatement,
         body: compile({:body, body})
       }
+    }
+  end
+
+  def compile({{:., _, [object, property]}, _, _}) do
+    %{
+      type: :MemberExpression,
+      object: compile(object),
+      property: compile(property),
+      computed: false
     }
   end
 
