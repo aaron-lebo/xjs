@@ -11,10 +11,10 @@ defmodule XJS do
     }
   end
 
-  def compile(value) when is_number value or is_bitstring value do
+  def compile(val) when is_number val or is_bitstring val do
     %{
       type: :Literal,
-      value: value
+      value: val
     }
   end
 
@@ -60,25 +60,25 @@ defmodule XJS do
     }
   end
 
-  def compile({:., _, [object, property]}) do
+  def compile({:., _, [obj, prop]}) do
     %{
       type: :MemberExpression,
-      object: compile(object),
-      property: compile(property),
+      object: compile(obj),
+      property: compile(prop),
       computed: false
     }
   end
 
-  def compile({{:., _, [object, property]}, _, args}) when args == [] do
+  def compile({{:., _, [obj, prop]}, _, args}) when args == [] do
     %{
       type: :MemberExpression,
-      object: compile(object),
-      property: compile(property),
+      object: compile(obj),
+      property: compile(prop),
       computed: false
     }
   end
 
-  def compile({{:., _, [object, property]} = callee, _, args}) do
+  def compile({{:., _, _} = callee, _, args}) do
     %{
       type: :CallExpression,
       callee: compile(callee),
@@ -87,11 +87,11 @@ defmodule XJS do
   end
 
 
-  def compile({:&, _, [{callee, _, arguments}]}) do
+  def compile({:&, _, [{callee, _, args}]}) do
     %{
       type: :CallExpression,
       callee: compile(callee),
-      arguments: Enum.map(arguments, &XJS.compile/1)
+      arguments: Enum.map(args, &XJS.compile/1)
     }
   end
 
@@ -104,10 +104,10 @@ defmodule XJS do
     }
   end
 
-  def compile({operator, _, [left, right]}) when operator in [:*, :/, :+, :-] do
+  def compile({op, _, [left, right]}) when op in [:*, :/, :+, :-] do
     %{
       type: :BinaryExpression,
-      operator: operator,
+      operator: op,
       left: compile(left),
       right: compile(right)
     }
@@ -132,11 +132,11 @@ defmodule XJS do
     }
   end
 
-  def compile({callee, _, arguments}) do
+  def compile({callee, _, args}) do
     %{
       type: :CallExpression,
       callee: compile(callee),
-      arguments: Enum.map(arguments, &XJS.compile/1)
+      arguments: Enum.map(args, &XJS.compile/1)
     }
   end
 
