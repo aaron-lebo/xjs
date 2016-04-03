@@ -42,8 +42,7 @@ defmodule XJS do
     end)
   end
 
-  def compile({:fun, _, tail}) do
-    {params, [[do: body]]} = Enum.split tail, -1
+  def compile({:fn, _, [{:->, _, [params, body]}]}) do
     %{
       type: :FunctionExpression,
       params: Enum.map(params, fn x -> compile x end),
