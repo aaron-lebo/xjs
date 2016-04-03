@@ -69,7 +69,7 @@ defmodule XJS do
     }
   end
 
-  def compile({{:., _, [object, property]}, _, args}) do
+  def compile({{:., _, [object, property]}, _, args}) when args == [] do
     %{
       type: :MemberExpression,
       object: compile(object),
@@ -77,6 +77,15 @@ defmodule XJS do
       computed: false
     }
   end
+
+  def compile({{:., _, [object, property]} = callee, _, args}) do
+    %{
+      type: :CallExpression,
+      callee: compile(callee),
+      arguments: Enum.map(args, &XJS.compile/1)
+    }
+  end
+
 
   def compile({:&, _, [{callee, _, arguments}]}) do
     %{
@@ -120,6 +129,14 @@ defmodule XJS do
     %{
       type: :Identifier,
       name: name
+    }
+  end
+
+  def compile({callee, _, arguments}) do
+    %{
+      type: :CallExpression,
+      callee: compile(callee),
+      arguments: Enum.map(arguments, &XJS.compile/1)
     }
   end
 
