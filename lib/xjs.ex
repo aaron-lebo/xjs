@@ -38,6 +38,7 @@ defmodule XJS do
       arguments: map_compile(args)
     }
   end
+
   def compile(val) when is_boolean(val) or is_number(val) or is_bitstring(val) do
     %{
       type: :Literal,
@@ -45,7 +46,7 @@ defmodule XJS do
     }
   end
 
-  def compile(name) when is_atom name do
+  def compile(name) when is_atom(name) do
     %{
       type: :Identifier,
       name: name
