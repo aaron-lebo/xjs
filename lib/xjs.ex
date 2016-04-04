@@ -136,6 +136,10 @@ defmodule XJS do
     }
   end
 
+  def compile({:sigil_r, meta, [{:<<>>, _, [pattern]}, flags]}) do
+    compile {:RegExp, meta, [pattern, flags]}
+  end
+
   def compile({name, _, nil}) do
     %{
       type: :Identifier,
@@ -152,7 +156,7 @@ defmodule XJS do
   end
 
   def compile(node) do
-    %{error: node} |> IO.inspect
+    raise [error: node]
   end
 
   defmacro xjs(do: block) do
@@ -160,7 +164,7 @@ defmodule XJS do
       {:__block__, _, ast} -> ast
       ast -> [ast]
     end
-    |> Enum.map(fn x -> compile x end)
+    |> Enum.map(&XJS.compile/1)
     |> Macro.escape
   end
 end
