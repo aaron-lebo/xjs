@@ -4,6 +4,30 @@ defmodule XJS do
     :VariableDeclaration
   ]
 
+  def block({:__block__, _, body}) do
+    block body
+  end
+
+  def block(body) when is_tuple body do
+    block [body]
+  end
+
+  def block(body) do
+    %{
+      type: :BlockStatement,
+      body: Enum.map(body, fn node ->
+        node = compile node
+        case node[:type] do
+          type when type in @statements -> node
+          _ -> %{
+               type: :ExpressionStatement,
+               expression: node
+           }
+        end
+      end)
+    }
+  end
+
   def compile(name) when is_atom name do
     %{
       type: :Identifier,
@@ -35,30 +59,6 @@ defmodule XJS do
           value: compile(val),
           kind: :init
         }
-      end)
-    }
-  end
-
-  def block({:__block__, _, body}) do
-    block body
-  end
-
-  def block(body) when is_tuple body do
-    block [body]
-  end
-
-  def block(body) do
-    %{
-      type: :BlockStatement,
-      body: Enum.map(body, fn node ->
-        node = compile node
-        case node[:type] do
-          type when type in @statements -> node
-          _ -> %{
-               type: :ExpressionStatement,
-               expression: node
-           }
-        end
       end)
     }
   end
@@ -102,7 +102,7 @@ defmodule XJS do
     %{
       type: :CallExpression,
       callee: compile(callee),
-      arguments: Enum.map(args, &XJS.compile/1)
+      arguments: args && Enum.map(args, &XJS.compile/1) || []
     }
   end
 
