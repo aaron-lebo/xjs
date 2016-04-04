@@ -89,6 +89,14 @@ defmodule XJS do
     }
   end
 
+  def compile({:new, _, [{callee, _, args}]}) do
+    %{
+      type: :NewExpression,
+      callee: compile(callee),
+      arguments: Enum.map(args, &XJS.compile/1)
+    }
+  end
+
   def compile({{:., _, _} = callee, _, args}) do
     %{
       type: :CallExpression,
