@@ -8,7 +8,7 @@ defmodule XJS do
     body! body, true
   end
 
-  def body!(body) when is_tuple body do
+  def body!(body) do
     body! [body], true
   end
 
