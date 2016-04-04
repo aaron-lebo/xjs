@@ -28,6 +28,10 @@ defmodule XJS do
     }
   end
 
+  def map_compile(enum) do
+    Enum.map enum, &compile/1
+  end
+
   def compile(name) when is_atom name do
     %{
       type: :Identifier,
@@ -35,7 +39,7 @@ defmodule XJS do
     }
   end
 
-  def compile(val) when is_number(val) or is_bitstring(val) do
+  def compile(val) when is_number(val) or is_bitstring(val) or is_boolean(val) do
     %{
       type: :Literal,
       value: val
@@ -45,7 +49,7 @@ defmodule XJS do
   def compile(elements) when is_list elements do
     %{
       type: :ArrayExpression,
-      elements: Enum.map(elements, &XJS.compile/1)
+      elements: map_compile(elements)
     }
   end
 
@@ -66,7 +70,7 @@ defmodule XJS do
   def compile({:fn, _, [{:->, _, [params, body]}]}) do
     %{
       type: :FunctionExpression,
-      params: Enum.map(params, &XJS.compile/1),
+      params: map_compile(params),
       body: block(body)
     }
   end
@@ -93,7 +97,7 @@ defmodule XJS do
     %{
       type: :NewExpression,
       callee: compile(callee),
-      arguments: Enum.map(args, &XJS.compile/1)
+      arguments: map_compile(args)
     }
   end
 
@@ -101,7 +105,7 @@ defmodule XJS do
     %{
       type: :CallExpression,
       callee: compile(callee),
-      arguments: Enum.map(args, &XJS.compile/1)
+      arguments: map_compile(args)
     }
   end
 
@@ -110,7 +114,7 @@ defmodule XJS do
     %{
       type: :CallExpression,
       callee: compile(callee),
-      arguments: args && Enum.map(args, &XJS.compile/1) || []
+      arguments: args && map_compile(args) || []
     }
   end
 
@@ -159,7 +163,7 @@ defmodule XJS do
     %{
       type: :CallExpression,
       callee: compile(callee),
-      arguments: Enum.map(args, &XJS.compile/1)
+      arguments: map_compile(args)
     }
   end
 
@@ -172,7 +176,7 @@ defmodule XJS do
       {:__block__, _, ast} -> ast
       ast -> [ast]
     end
-    |> Enum.map(&XJS.compile/1)
+    |> map_compile
     |> Macro.escape
   end
 end
