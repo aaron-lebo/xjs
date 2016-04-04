@@ -32,6 +32,20 @@ defmodule XJS do
     Enum.map enum, &compile/1
   end
 
+  def call(callee, args) do
+    %{
+      type: :CallExpression,
+      callee: compile(callee),
+      arguments: map_compile(args)
+    }
+  end
+  def compile(val) when is_boolean(val) or is_number(val) or is_bitstring(val) do
+    %{
+      type: :Literal,
+      value: val
+    }
+  end
+
   def compile(name) when is_atom name do
     %{
       type: :Identifier,
@@ -39,10 +53,10 @@ defmodule XJS do
     }
   end
 
-  def compile(val) when is_number(val) or is_bitstring(val) or is_boolean(val) do
+  def compile({name, _, nil}) do
     %{
-      type: :Literal,
-      value: val
+      type: :Identifier,
+      name: name
     }
   end
 
@@ -56,11 +70,11 @@ defmodule XJS do
   def compile({:%{}, _, props}) do
     %{
       type: :ObjectExpression,
-      properties: Enum.map(props, fn {key, val} ->
+      properties: Enum.map(props, fn {k, v} ->
         %{
           type: :Property,
-          key: compile(key),
-          value: compile(val),
+          key: compile(k),
+          value: compile(v),
           kind: :init
         }
       end)
@@ -84,13 +98,8 @@ defmodule XJS do
     }
   end
 
-  def compile({{:., _, [obj, prop]}, _, args}) when args == [] do
-    %{
-      type: :MemberExpression,
-      object: compile(obj),
-      property: compile(prop),
-      computed: false
-    }
+  def compile({{:., _, [obj, prop]} = member, _, args}) when args == [] do
+    compile member
   end
 
   def compile({:new, _, [callee | args]}) do
@@ -102,20 +111,11 @@ defmodule XJS do
   end
 
   def compile({{:., _, _} = callee, _, args}) do
-    %{
-      type: :CallExpression,
-      callee: compile(callee),
-      arguments: map_compile(args)
-    }
+    call callee, args
   end
 
-
   def compile({:&, _, [{callee, _, args}]}) do
-    %{
-      type: :CallExpression,
-      callee: compile(callee),
-      arguments: args && map_compile(args) || []
-    }
+    call callee, (args && map_compile(args) || [])
   end
 
   def compile({:=, _, [left, right]}) do
@@ -152,19 +152,8 @@ defmodule XJS do
     compile {:new, meta, [:RegExp, pattern, to_string(flags)]}
   end
 
-  def compile({name, _, nil}) do
-    %{
-      type: :Identifier,
-      name: name
-    }
-  end
-
   def compile({callee, _, args}) do
-    %{
-      type: :CallExpression,
-      callee: compile(callee),
-      arguments: map_compile(args)
-    }
+    call callee, args
   end
 
   def compile(node) do
