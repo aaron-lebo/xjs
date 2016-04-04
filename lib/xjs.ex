@@ -145,7 +145,7 @@ defmodule XJS do
   end
 
   def compile({:sigil_r, meta, [{:<<>>, _, [pattern]}, flags]}) do
-    compile {:RegExp, meta, [pattern, flags]}
+    compile {:new, meta, [:RegExp, pattern, to_string(flags)]}
   end
 
   def compile({name, _, nil}) do
