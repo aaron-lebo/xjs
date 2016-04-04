@@ -89,7 +89,7 @@ defmodule XJS do
     }
   end
 
-  def compile({:new, _, [{callee, _, args}]}) do
+  def compile({:new, _, [callee | args]}) do
     %{
       type: :NewExpression,
       callee: compile(callee),
