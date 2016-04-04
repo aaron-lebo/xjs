@@ -4,28 +4,27 @@ defmodule XJS do
     :VariableDeclaration
   ]
 
-  def block({:__block__, _, body}) do
-    block body
+  def body!({:__block__, _, body}) do
+    body! body, true
   end
 
-  def block(body) when is_tuple body do
-    block [body]
+  def body!(body) when is_tuple body do
+    body! [body], true
   end
 
-  def block(body) do
-    %{
-      type: :BlockStatement,
-      body: Enum.map(body, fn node ->
+  def body!(body, compile?) do
+    Enum.map body, fn node ->
+      if compile? do
         node = compile node
-        case node[:type] do
-          type when type in @statements -> node
-          _ -> %{
-               type: :ExpressionStatement,
-               expression: node
-           }
-        end
-      end)
-    }
+      end
+      case node[:type] do
+        type when type in @statements -> node
+        _ -> %{
+             type: :ExpressionStatement,
+             expression: node
+         }
+      end
+    end
   end
 
   def map_compile(enum) do
@@ -85,7 +84,10 @@ defmodule XJS do
     %{
       type: :FunctionExpression,
       params: map_compile(params),
-      body: block(body)
+      body: %{
+        type: :BlockStatement,
+        body: body!(body)
+      }
     }
   end
 
