@@ -11,7 +11,7 @@ defmodule XJS do
     }
   end
 
-  def compile(val) when is_number val or is_bitstring val do
+  def compile(val) when is_number(val) or is_bitstring(val) do
     %{
       type: :Literal,
       value: val
