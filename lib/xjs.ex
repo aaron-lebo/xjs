@@ -4,7 +4,7 @@ defmodule XJS do
     :VariableDeclaration
   ]
 
-  def compile(name) when is_atom name  do
+  def compile(name) when is_atom name do
     %{
       type: :Identifier,
       name: name
@@ -39,6 +39,10 @@ defmodule XJS do
     }
   end
 
+  def compile({:body, {:__block__, _, body}}) do
+    compile {:body, body}
+  end
+
   def compile({:body, body}) when is_tuple body do
     compile {:body, [body]}
   end
@@ -46,7 +50,7 @@ defmodule XJS do
   def compile({:body, body}) do
     Enum.map(body, fn node ->
       node = compile node
-      case Map.get node, :type do
+      case node[:type] do
         type when type in @statements -> node
         _ -> %{
              type: :ExpressionStatement,
