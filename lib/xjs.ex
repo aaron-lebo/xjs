@@ -25,10 +25,17 @@ defmodule XJS do
     }
   end
 
-  def compile({:%{}, _, tail}) do
+  def compile({:%{}, _, props}) do
     %{
       type: :ObjectExpression,
-      properties: []
+      properties: Enum.map(props, fn {key, val} ->
+        %{
+          type: :Property,
+          key: compile(key),
+          value: compile(val),
+          kind: :init
+        }
+      end)
     }
   end
 
