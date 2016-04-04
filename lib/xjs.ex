@@ -39,35 +39,35 @@ defmodule XJS do
     }
   end
 
-  def compile({:body, {:__block__, _, body}}) do
-    compile {:body, body}
+  def block({:__block__, _, body}) do
+    block body
   end
 
-  def compile({:body, body}) when is_tuple body do
-    compile {:body, [body]}
+  def block(body) when is_tuple body do
+    block [body]
   end
 
-  def compile({:body, body}) do
-    Enum.map(body, fn node ->
-      node = compile node
-      case node[:type] do
-        type when type in @statements -> node
-        _ -> %{
-             type: :ExpressionStatement,
-             expression: node
-         }
-      end
-    end)
+  def block(body) do
+    %{
+      type: :BlockStatement,
+      body: Enum.map(body, fn node ->
+        node = compile node
+        case node[:type] do
+          type when type in @statements -> node
+          _ -> %{
+               type: :ExpressionStatement,
+               expression: node
+           }
+        end
+      end)
+    }
   end
 
   def compile({:fn, _, [{:->, _, [params, body]}]}) do
     %{
       type: :FunctionExpression,
       params: Enum.map(params, &XJS.compile/1),
-      body: %{
-        type: :BlockStatement,
-        body: compile({:body, body})
-      }
+      body: block(body)
     }
   end
 
