@@ -150,6 +150,10 @@ defmodule XJS do
     }
   end
 
+  def compile({:|>, _, [left, {head, meta, args} = right]}) do
+    compile {head, meta, [left | args]}
+  end
+
   def compile({kind, _, [{:=, _, [head, body]}]}) when kind in [:con, :let] do
     %{
       type: :VariableDeclaration,
