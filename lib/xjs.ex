@@ -1,6 +1,7 @@
 defmodule XJS do
   @statements [
     :LetStatement,
+    :IfStatement,
     :VariableDeclaration
   ]
 
@@ -25,6 +26,13 @@ defmodule XJS do
          }
       end
     end
+  end
+
+  def block!(body) do
+    %{
+      type: :BlockStatement,
+      body: body!(body)
+    }
   end
 
   defp map_compile(enum) do
@@ -85,14 +93,11 @@ defmodule XJS do
     %{
       type: :FunctionExpression,
       params: map_compile(params),
-      body: %{
-        type: :BlockStatement,
-        body: body!(body)
-      }
+      body: block!(body)
     }
   end
 
-  def compile({:., _, [obj, prop]}) do
+ def compile({:., _, [obj, prop]}) do
     %{
       type: :MemberExpression,
       object: compile(obj),
@@ -151,7 +156,20 @@ defmodule XJS do
   end
 
   def compile({:|>, _, [left, {head, meta, args} = right]}) do
-    compile {head, meta, [left | args]}
+    compile {head, meta, [left|args]}
+  end
+
+  def compile({:if, meta, [test, [do: do_]]}) do
+    compile {:if, meta, [test, [do: do_, else: nil]]}
+  end
+
+  def compile({:if, _, [test, [do: consequent, else: alternate]]}) do
+    %{
+      type: :IfStatement,
+      test: compile(test),
+      consequent: block!(consequent),
+      alternate: block!(alternate)
+    }
   end
 
   def compile({kind, _, [{:=, _, [head, body]}]}) when kind in [:con, :let] do
