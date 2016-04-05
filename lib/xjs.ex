@@ -117,6 +117,16 @@ defmodule XJS do
     call callee, args
   end
 
+  def compile({op, _, [left, right]}) when op in [:&&, :||] do
+    %{
+      type: :LogicalExpression,
+      operator: op,
+      left: compile(left),
+      right: compile(right)
+    }
+  end
+
+
   def compile({:&, _, [{callee, _, args}]}) do
     call callee, (args && map_compile(args) || [])
   end
