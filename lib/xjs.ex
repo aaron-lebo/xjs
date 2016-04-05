@@ -27,11 +27,11 @@ defmodule XJS do
     end
   end
 
-  def map_compile(enum) do
+  defp map_compile(enum) do
     Enum.map enum, &compile/1
   end
 
-  def call(callee, args) do
+  defp call(callee, args) do
     %{
       type: :CallExpression,
       callee: compile(callee),
@@ -140,8 +140,8 @@ defmodule XJS do
     }
   end
 
-  def compile({op, _, [left, right]}) when
-    op in [:==, :!=, :===, :!==, :<, :<=, :>, :>=, :+, :-, :*, :/, :%, :&, :|] do
+  @binary_ops [:==, :!=, :===, :!==, :<, :<=, :>, :>=, :+, :-, :*, :/, :%, :&, :|]
+  def compile({op, _, [left, right]}) when op in @binary_ops do
     %{
       type: :BinaryExpression,
       operator: op,
