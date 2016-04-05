@@ -140,7 +140,8 @@ defmodule XJS do
     }
   end
 
-  def compile({op, _, [left, right]}) when op in [:*, :/, :+, :-] do
+  def compile({op, _, [left, right]}) when
+    op in [:==, :!=, :===, :!==, :<, :<=, :>, :>=, :+, :-, :*, :/, :%] do
     %{
       type: :BinaryExpression,
       operator: op,
