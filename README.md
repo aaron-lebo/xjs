@@ -46,7 +46,7 @@ Honestly, this is a bit of a hack. But not all hacks are bad.
 
 This has been tested on the wonderful [void Linux](https://voidlinux.eu). It should work fine on a number of other OSes. 
 
-1. Make sure Node and npm are installed properly. Also make sure Elixir and mix are installed properly. Google.
+1. Make sure Node and npm are installed properly. Also make sure Elixir and mix are installed properly. Use your preferred search engine.
 
 2. Start a new Elixir project
 
@@ -55,7 +55,7 @@ mix new test
 cd test
 ```
 
-3. Add xjs to your list of dependencies and ensure xjs is started before your application in `mix.exs`:
+3. Add xjs to your list of dependencies and ensure xjs is started before your application in `mix.exs`
 
 ```elixir
 def deps do
@@ -74,7 +74,7 @@ end
 
 ### 1. xjs
 
-xjs is an Elixir macro and a mix task. It works very simply: it takes an Elixir ast (as produced by the Elixir compiler) and produdes a jst, or a Javascript Syntax Tree. See [lib/xjs.xjs](../lib/xjs.xjs): 
+xjs is an Elixir macro and a mix task. It works very simply: it takes an Elixir ast (as produced by the Elixir compiler) and produdes a jst, or a Javascript Syntax Tree. See [lib/xjs.xjs](lib/xjs.xjs): 
 
 ```elixir
 def compile({:if, meta, [test, [do: consequent]]}) do
@@ -91,7 +91,7 @@ def compile({:if, _, [test, [do: consequent, else: alternate]]}) do
 end
 ```
 
-Currently, an .xjs file is an Elixir module with a defined run function. See [examples/index.xjs](../examples/index.xjs): 
+Currently, an .xjs file is an Elixir module with a defined run function. See [examples/index.xjs](examples/index.xjs): 
 
 ```elixir
 def run do
@@ -119,7 +119,7 @@ mix xjs "examples/index.xjs" | json
 
 jst is [Mozilla's Parser API](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API) as json: 
 
-See [examples/index.jst](../examples/index.jst): 
+See [examples/index.jst](examples/index.jst): 
 
 ```json
 {
