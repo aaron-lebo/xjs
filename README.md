@@ -13,7 +13,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
   1. Add xjs to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:xjs, "~> 0.0.2"}]
+          [{:xjs, "~> 0.0.3"}]
         end
 
   2. Ensure xjs is started before your application:
