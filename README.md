@@ -10,7 +10,7 @@ xjs -> jst -> es6 -> es5
 
 ### 1. xjs
 
-xjs is an Elixir macros and mix task which allows you to write es6* (Javascript) in Elixir. It works very simply: it takes an Elixir ast and produdes a jst, or a Javascript Syntax Tree. 
+xjs is an Elixir macro and a mix task which allow you to write es6* (Javascript) in Elixir. It works very simply: it takes an Elixir ast and produdes a jst, or a Javascript Syntax Tree. 
 
 Currently, an .xjs file is an Elixir module with a defined run function. See [examples/index.xjs](../examples/index.xjs): 
 
@@ -37,6 +37,10 @@ mix xjs "examples/index.xjs" | json
 ```
 
 ### 2. jst
+
+jst is [Mozilla's Parser API](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API) as json: 
+
+See [examples/index.jst](../examples/index.jst): 
 
 ```
 {
