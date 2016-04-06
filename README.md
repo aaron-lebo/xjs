@@ -50,8 +50,10 @@ This has been tested on the wonderful [void Linux](https://voidlinux.eu). It sho
 
 2. Start a new Elixir project
 
-`mix new test`
-`cd test`
+```
+mix new test
+cd test
+```
 
 3. Add xjs to your list of dependencies and ensure xjs is started before your application in `mix.exs`:
 
