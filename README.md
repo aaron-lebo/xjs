@@ -87,6 +87,13 @@ This has been tested on [Void Linux](http://voidlinux.eu). If you are looking fo
 
 You should be good to go.
 
+6. If you'd like to continue with the examples below, you may want to grab a couple of files.
+
+  ```
+  wget https://raw.githubusercontent.com/aaron-lebo/xjs/master/examples/webpack.config.js
+  wget https://raw.githubusercontent.com/aaron-lebo/xjs/master/examples/webpack.config.js
+  ```
+
 ## the process
 
 ### 1. xjs
@@ -129,12 +136,12 @@ end
 We can convert it to jst with the following command:
 
 ```
-mix xjs "examples/index.xjs" | json
+mix xjs index.xjs | json > index.jst
 ```
 
 ### 2. jst
 
-jst is [Mozilla's Parser API](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API) as json: 
+jst is [Mozilla's Parser API](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API) as json. [jst-loader](https://github.com/aaron-lebo/jst-loader) is a Webpack loader which compiles jst to es6 using [escodegen](https://github.com/estools/escodegen).
 
 See [examples/index.jst](examples/index.jst): 
 
