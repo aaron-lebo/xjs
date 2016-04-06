@@ -281,7 +281,7 @@ print('hey!');
 print('hey!');
  ```
 
-Most of the time, however, you will want to use the `babel-loader` which does most of the hard work to compile down to es5. See [examples/es5.js](examples/es5.js).
+Most of the time, however, you will want to use `babel-loader` which does most of the hard work to compile down to es5. See [examples/es5.js](examples/es5.js).
 
 ### 4. es5
 
