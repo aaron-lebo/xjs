@@ -35,7 +35,7 @@ Honestly, this is a bit of a hack. But not all hacks are bad.
 
 ### 1. xjs
 
-xjs is an Elixir macro and a mix task which allow you to write es6* (Javascript) in Elixir. It works very simply: it takes an Elixir ast (as produced by the Elixir compiler) and produdes a jst, or a Javascript Syntax Tree. This gives us the full range of Elixir syntax with a minimum of code, as Elixir is particularly well-suited to writing compiles with it's pattern matching. See [lib/xjs.xjs](../lib/xjs.xjs): 
+xjs is an Elixir macro and a mix task. It works very simply: it takes an Elixir ast (as produced by the Elixir compiler) and produdes a jst, or a Javascript Syntax Tree. This gives us the full range of Elixir syntax with a minimum of code, as Elixir is particularly well-suited to writing compilers with it's pattern matching. See [lib/xjs.xjs](../lib/xjs.xjs): 
 
 ```
 def compile({:if, meta, [test, [do: consequent]]}) do
@@ -51,7 +51,6 @@ def compile({:if, _, [test, [do: consequent, else: alternate]]}) do
   }
 end
 ```
-
 
 Currently, an .xjs file is an Elixir module with a defined run function. See [examples/index.xjs](../examples/index.xjs): 
 
