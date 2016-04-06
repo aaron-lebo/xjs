@@ -59,7 +59,7 @@ This has been tested on [Void Linux](http://voidlinux.eu). If you are looking fo
 
   ```elixir
   def deps do
-    [{:xjs, "~> 0.1.0"}]
+    [{:xjs, "~> 0.1.1"}]
   end
   ```
   ...
@@ -281,9 +281,11 @@ print('hey!');
 print('hey!');
  ```
 
-Most of the time, however, you will want to use `babel-loader` which does most of the hard work to compile down to es5. See [examples/es5.js](examples/es5.js).
+Most of the time, however, you will want to use `babel-loader` which does most of the hard work to compile down to es5.
 
 ### 4. es5
+
+See [examples/es5.js](examples/es5.js).
 
 ```javascript
 var print = function print(x) {
