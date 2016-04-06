@@ -30,4 +30,11 @@ defmodule XJS.Mixfile do
   defp deps do
     [{:poison, "~> 2.0"}]
   end
+
+  defp package do
+    [
+      maintainers: ["Aaron Lebo"],
+      licenses: ["ISC"],
+      links: %{"GitHub" => "https://github.com/aaron-lebo/xjs"}]
+  end
 end
