@@ -70,6 +70,23 @@ This has been tested on [Void Linux](http://voidlinux.eu). If you are looking fo
   end
   ```
 
+  This is enough to use the xjs macro or the `mix xjs` task. If you want to use the webpack portion of xjs, continue on.
+
+
+4. Start a new Node project.
+
+  ```
+  npm init
+  ```
+
+5. Install necessary dependencies.
+
+  ```
+  npm install babel-loader babel-core babel-preset-es2015 jst-loader xjs-loader webpack --save-dev
+  ```
+
+You should be good to go.
+
 ## the process
 
 ### 1. xjs
