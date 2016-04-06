@@ -11,9 +11,9 @@ Importantly, the two parts can be used in isolation. You may use the same techni
 
 The code has an emphasis on being concise and readable (under 250 lines of code).
 
-## NOTICE 
+## status 
 
-This (the documentation especially) is a work in progress.
+xjs currently supports a good portion of es6
 
 ## tldr
 
@@ -264,9 +264,7 @@ Alternatively, we can skip the intermediate step and generate and bundle up js v
 webpack index.xjs
 ```
 
-This requires [xjs-loader](https://github.com/aaron-lebo/xjs-loader).
-
-Note: `xjs-loader` requires `mix xjs` to be available.
+This requires [xjs-loader](https://github.com/aaron-lebo/xjs-loader) and `xjs-loader` requires `mix xjs` to be available.
 
 ### 3. es6
 
@@ -283,7 +281,7 @@ print('hey!');
 print('hey!');
  ```
 
-Most of the time, however, you will want to use the `babel-loader` which does most of the hard work. See [examples/es5.js](examples/es5.js).
+Most of the time, however, you will want to use the `babel-loader` which does most of the hard work to compile down to es5. See [examples/es5.js](examples/es5.js).
 
 ### 4. es5
 
