@@ -44,9 +44,11 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	let print = function (x) {
+	'use strict';
+
+	var print = function print(x) {
 	    console.log(x);
-	    return(x);
+	    return x;
 	};
 	print('hey!');
 	print('hey!');
