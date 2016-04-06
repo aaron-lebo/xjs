@@ -155,12 +155,12 @@ defmodule XJS do
     }
   end
 
-  def compile({:|>, _, [left, {head, meta, args} = right]}) do
+  def compile({:|>, _, [left, {head, meta, args}]}) do
     compile {head, meta, [left|args]}
   end
 
-  def compile({:if, meta, [test, [do: do_]]}) do
-    compile {:if, meta, [test, [do: do_, else: nil]]}
+  def compile({:if, meta, [test, [do: consequent]]}) do
+    compile {:if, meta, [test, [do: consequent, else: nil]]}
   end
 
   def compile({:if, _, [test, [do: consequent, else: alternate]]}) do
