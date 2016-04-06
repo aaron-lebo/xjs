@@ -42,6 +42,32 @@ What's more, the compilation process can be broken down into any number of small
 
 Honestly, this is a bit of a hack. But not all hacks are bad. 
 
+## installation
+
+This has been tested on the wonderful [void Linux](https://voidlinux.eu). It should work fine on a number of other OSes. 
+
+1. Make sure Node and npm are installed properly. Also make sure Elixir and mix are installed properly. Google.
+
+2. Start a new Elixir project
+
+`mix new test`
+`cd test`
+
+3. Add xjs to your list of dependencies and ensure xjs is started before your application in `mix.exs`:
+
+```elixir
+def deps do
+  [{:xjs, "~> 0.0.5"}]
+end
+```
+...
+
+```elixir 
+def application do
+  [applications: [:xjs]]
+end
+```
+
 ## the process
 
 ### 1. xjs
@@ -223,18 +249,4 @@ var print = function print(x) {
 print('hey!');
 print('hey!');
 ```
-
-## installation
-
-  1. Add xjs to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:xjs, "~> 0.0.5"}]
-        end
-
-  2. Ensure xjs is started before your application:
-
-        def application do
-          [applications: [:xjs]]
-        end
 
