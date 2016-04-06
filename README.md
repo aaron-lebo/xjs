@@ -7,7 +7,7 @@ xjs is an Elixir library along with a few small tools which allow you to write e
 xjs -> jst -> es6 -> es5 
 
 
-```
+```elixir
 def run() do
   xjs
     let print = fn x ->
@@ -37,7 +37,7 @@ Honestly, this is a bit of a hack. But not all hacks are bad.
 
 xjs is an Elixir macro and a mix task. It works very simply: it takes an Elixir ast (as produced by the Elixir compiler) and produdes a jst, or a Javascript Syntax Tree. This gives us the full range of Elixir syntax with a minimum of code, as Elixir is particularly well-suited to writing compilers with its pattern matching. See [lib/xjs.xjs](../lib/xjs.xjs): 
 
-```
+```elioxir
 def compile({:if, meta, [test, [do: consequent]]}) do
   compile {:if, meta, [test, [do: consequent, else: nil]]}
 end
@@ -54,7 +54,7 @@ end
 
 Currently, an .xjs file is an Elixir module with a defined run function. See [examples/index.xjs](../examples/index.xjs): 
 
-```
+```elixir
 def run() do
   xjs
     let print = fn x ->
@@ -82,7 +82,7 @@ jst is [Mozilla's Parser API](https://developer.mozilla.org/en-US/docs/Mozilla/P
 
 See [examples/index.jst](../examples/index.jst): 
 
-```
+```json
 {
   "type": "Program",
   "body": [
@@ -193,7 +193,7 @@ See [examples/index.jst](../examples/index.jst):
 
 or es2015 or es2016 or esME or whatever the hell it is is these days
 
-```
+```jasvascript
 let print = function (x) {
     console.log(x);
     return(x);
@@ -204,7 +204,7 @@ print('hey!');
 
 ### 4. es5
 
-```
+```jasvascript
 var print = function print(x) {
     console.log(x);
     return x;
