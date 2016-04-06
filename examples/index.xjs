@@ -11,7 +11,7 @@ defmodule XJS.Test do
         let message = "hello world"
         print message
       else
-        print "hola mondo"
+        print "hola mundo"
       end
     end
   end
