@@ -139,7 +139,9 @@ mix xjs "examples/index.xjs" | json
 }
 ```
 
-### 3. es6 (or es2015 or es2016 or esME or whatever the hell it is is these days)
+### 3. es6
+
+or es2015 or es2016 or esME or whatever the hell it is is these days
 
 ```
 let print = function (x) {
