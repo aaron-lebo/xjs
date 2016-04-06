@@ -300,8 +300,8 @@ You can now [configure Webpack](https://webpack.github.io/docs/configuration.htm
 
 ### the future
 
-React support. Use @typespec for gradual typing via Flow? There's lots of possibilities. Contributions appreciated.
+React support. Immutable.js? Use @typespec for gradual typing via Flow? There are lots of possibilities. Contributions appreciated.
 
 ### isn't this just a transpiler?
 
-Technically, yes. What exactly do you think a compiler is, though? Is that like one of those languages which is only good for "scripting"?
+Technically, yes. What exactly do you think a compiler is? 
