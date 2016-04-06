@@ -3,7 +3,7 @@ defmodule XJS.Mixfile do
 
   def project do
     [app: :xjs,
-     version: "0.0.4",
+     version: "0.0.5",
      elixir: "~> 1.2",
      description: "elixir syntax, javascript semantics",
      package: package,

@@ -7,12 +7,11 @@ defmodule XJS.Test do
         console.log x
         return x
       end
-      if true do
-        let message = "hello world"
-        print message
-      else
-        print "hola mundo"
-      end
+
+      print "hey!" 
+
+      # pipe
+      "hey!" |> print 
     end
   end
 end

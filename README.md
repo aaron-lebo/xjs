@@ -26,6 +26,119 @@ def run() do
 end
 ```
 
+2. jst
+
+```
+mix xjs "examples/index.xjs" | json
+```
+
+```
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "kind": "let",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "init": {
+            "type": "FunctionExpression",
+            "params": [
+              {
+                "type": "Identifier",
+                "name": "x"
+              }
+            ],
+            "body": {
+              "type": "BlockStatement",
+              "body": [
+                {
+                  "type": "ExpressionStatement",
+                  "expression": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "property": {
+                        "type": "Identifier",
+                        "name": "log"
+                      },
+                      "object": {
+                        "type": "Identifier",
+                        "name": "console"
+                      },
+                      "computed": false
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "name": "x"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "ExpressionStatement",
+                  "expression": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "Identifier",
+                      "name": "return"
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "name": "x"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "name": "print"
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "CallExpression",
+        "callee": {
+          "type": "Identifier",
+          "name": "print"
+        },
+        "arguments": [
+          {
+            "value": "hey!",
+            "type": "Literal"
+          }
+        ]
+      }
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "CallExpression",
+        "callee": {
+          "type": "Identifier",
+          "name": "print"
+        },
+        "arguments": [
+          {
+            "value": "hey!",
+            "type": "Literal"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
 ## more
 
 xjs is intended to be both an useful tool as well as an easy way to learn about compilers.
@@ -41,7 +154,7 @@ Honestly, this is a bit of a hack. But it is a hack that seems to work and is si
   1. Add xjs to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:xjs, "~> 0.0.4"}]
+          [{:xjs, "~> 0.0.5"}]
         end
 
   2. Ensure xjs is started before your application:

@@ -156,7 +156,7 @@ defmodule XJS do
   end
 
   def compile({:|>, _, [left, {head, meta, args}]}) do
-    compile {head, meta, [left|args]}
+    compile {head, meta, args && [left|args] || [left]}
   end
 
   def compile({:if, meta, [test, [do: consequent]]}) do
