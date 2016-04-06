@@ -1,6 +1,6 @@
 # xjs 
 
-xjs is collection of small tools which make learning about and writing compilers easy. It also has the goal of being the simplest way of writing the latest Javascript (ES6+).
+xjs is collection of small tools which make learning about and writing compilers easy. It also has the goal of being the simplest way to write the latest Javascript (ES6+).
 
 xjs is composed of two parts:
 
@@ -297,3 +297,7 @@ print('hey!');
 Well, uh, guess that's about it.
 
 You can now [configure Webpack](https://webpack.github.io/docs/configuration.html) to do useful things like watching for file changes or hot-code reloading jst or xjs. That's pretty cool, right?
+
+### the future
+
+React support. Use @typespec for gradual typing via Flow typing? There's lots of possibilities. Contributions appreciated.
