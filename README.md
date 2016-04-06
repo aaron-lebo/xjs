@@ -48,27 +48,27 @@ This has been tested on the wonderful [void Linux](https://voidlinux.eu). It sho
 
 1. Make sure Node and npm are installed properly. Also make sure Elixir and mix are installed properly. Use your preferred search engine.
 
-2. Start a new Elixir project
+2. Start a new Elixir project.
 
-```
-mix new test
-cd test
-```
+  ```
+  mix new test
+  cd test
+  ```
 
-3. Add xjs to your list of dependencies and ensure xjs is started before your application in `mix.exs`
+3. Add xjs to your list of dependencies and ensure xjs is started before your application in `mix.exs`.
 
-```elixir
-def deps do
-  [{:xjs, "~> 0.0.5"}]
-end
-```
-...
+  ```elixir
+  def deps do
+    [{:xjs, "~> 0.0.5"}]
+  end
+  ```
+  ...
 
-```elixir 
-def application do
-  [applications: [:xjs]]
-end
-```
+  ```elixir 
+  def application do
+    [applications: [:xjs]]
+  end
+  ```
 
 ## the process
 
