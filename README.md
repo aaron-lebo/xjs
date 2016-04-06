@@ -300,4 +300,4 @@ You can now [configure Webpack](https://webpack.github.io/docs/configuration.htm
 
 ### the future
 
-React support. Use @typespec for gradual typing via Flow typing? There's lots of possibilities. Contributions appreciated.
+React support. Use @typespec for gradual typing via Flow? There's lots of possibilities. Contributions appreciated.
