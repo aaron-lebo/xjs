@@ -10,19 +10,19 @@ xjs -> jst -> es6 -> es5
 
 1. xjs
 
-    def run() do
-      xjs
-        let print = fn x ->
-          console.log x
-          return x
-        end
+      def run() do
+        xjs
+          let print = fn x ->
+            console.log x
+            return x
+          end
 
-        print "hey!"
+          print "hey!"
         
-        # pipe
-        "hey!" |> print
+          # pipe
+          "hey!" |> print
+        end
       end
-    end
 
 ## more
 
