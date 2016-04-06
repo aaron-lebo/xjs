@@ -252,9 +252,27 @@ See [examples/index.jst](examples/index.jst):
 }
 ```
 
+We can generate and bundle up Javascript via:
+
+```
+webpack index.jst
+```
+
+Alternatively, we can skip the intermediate step and generate and bundle up js via:
+
+```
+webpack index.xjs
+```
+
+This requires [xjs-loader](https://github.com/aaron-lebo/xjs-loader).
+
+Note: `xjs-loader` requires `mix xjs` to be available.
+
 ### 3. es6
 
-or es2015 or es2016 or esME or whatever the hell it is is these days
+*or es2015 or es2016 or esME or whatever the hell it is is these days*
+
+You could chose to only compile down to es6. See [examples/es6.js](examples/es6.js).
 
 ```javascript
 let print = function (x) {
@@ -264,6 +282,8 @@ let print = function (x) {
 print('hey!');
 print('hey!');
  ```
+
+Most of the time, however, you will want to use the `babel-loader` which does most of the hard work. See [examples/es5.js](examples/es5.js).
 
 ### 4. es5
 
@@ -276,3 +296,6 @@ print('hey!');
 print('hey!');
 ```
 
+Well, uh, guess that's about it.
+
+You can now [configure Webpack](https://webpack.github.io/docs/configuration.html) to do useful things like watching for file changes or hot-code reloading jst or xjs. That's pretty cool, right?
