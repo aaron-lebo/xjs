@@ -8,7 +8,7 @@ xjs -> jst -> es6 -> es5
 
 ## the process
 
-1. xjs
+### 1. xjs
 
 ```
 def run() do
@@ -26,7 +26,7 @@ def run() do
 end
 ```
 
-2. jst
+### 2. jst
 
 ```
 mix xjs "examples/index.xjs" | json
