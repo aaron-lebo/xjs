@@ -3,11 +3,15 @@ defmodule XJS.Test do
 
   def run() do
     xjs do
+      let print = fn x ->
+        console.log x
+        return x
+      end
       if true do
         let message = "hello world"
-        console.log message
+        print message
       else
-        console.log "hola mondo"
+        print "hola mondo"
       end
     end
   end
