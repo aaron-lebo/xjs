@@ -21,16 +21,35 @@ xjs -> jst -> es6 -> es5
 
 
 ```elixir
-xjs
+xjs do
+  # numbers
+  0
+
+  # strings
+  "yo"
+
+  # regexes
+  ~r/abc/i
+
+  # arrays
+  [0, 1, 2]
+
+  # objects
+  %{a: 0, b: 1, c: 2}
+
+  # constants
+  con pi = 22 / 7 
+
+  # functions
   let print = fn x ->
     console.log x
     return x
   end
 
-  print "hey!"
-     
-  # pipe
-  "hey!" |> print
+  print "hey!" 
+
+  # pipes
+  "hey!" |> print 
 end
 ```
 
