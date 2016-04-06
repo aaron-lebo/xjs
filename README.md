@@ -6,6 +6,24 @@ elixir syntax, javascript semantics
 
 xjs -> jst -> es6 -> es5 
 
+## the process
+
+1. xjs
+
+    def run() do
+      xjs
+        let print = fn x ->
+          console.log x
+          return x
+        end
+
+        print "hey!"
+        
+        # pipe
+        "hey!" |> print
+      end
+    end
+
 ## more
 
 xjs is intended to be both a useful tool as well as an easy way to learn about compilers.
