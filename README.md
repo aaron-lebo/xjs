@@ -91,7 +91,7 @@ This has been tested on [Void Linux](http://voidlinux.eu). If you are looking fo
 
   ```
   wget https://raw.githubusercontent.com/aaron-lebo/xjs/master/examples/webpack.config.js
-  wget https://raw.githubusercontent.com/aaron-lebo/xjs/master/examples/webpack.config.js
+  wget https://raw.githubusercontent.com/aaron-lebo/xjs/master/examples/index.xjs
   ```
 
 ## the process
