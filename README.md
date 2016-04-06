@@ -59,7 +59,7 @@ This has been tested on [Void Linux](http://voidlinux.eu). If you are looking fo
 
   ```elixir
   def deps do
-    [{:xjs, "~> 0.0.5"}]
+    [{:xjs, "~> 0.1.0"}]
   end
   ```
   ...
@@ -85,7 +85,7 @@ This has been tested on [Void Linux](http://voidlinux.eu). If you are looking fo
   npm install babel-loader babel-core babel-preset-es2015 jst-loader xjs-loader webpack --save-dev
   ```
 
-You should be good to go.
+  You should be good to go.
 
 6. If you'd like to continue with the examples below, you may want to grab a couple of files.
 
