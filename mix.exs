@@ -5,6 +5,7 @@ defmodule XJS.Mixfile do
     [app: :xjs,
      version: "0.0.1",
      elixir: "~> 1.2",
+     description: "elixir syntax, javascript semantics",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      deps: deps]
