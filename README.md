@@ -10,7 +10,7 @@ xjs -> jst -> es6 -> es5
 
 ### 1. xjs
 
-xjs is an Elixir library which allows you to write es6* (Javascript) in Elixir. It works very simply: it takes an Elixir ast and produdes a jst, or a Javascript Syntax Tree. 
+xjs is an Elixir macros and mix task which allows you to write es6* (Javascript) in Elixir. It works very simply: it takes an Elixir ast and produdes a jst, or a Javascript Syntax Tree. 
 
 Currently, an .xjs file is an Elixir module with a defined run function. See [examples/index.xjs](../examples/index.xjs): 
 
