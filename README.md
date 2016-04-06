@@ -1,6 +1,15 @@
 # xjs 
 
-xjs is an Elixir library along with a few small tools which allow you to write es6* (Javascript) in Elixir. It is intended to be an useful tool as well as an easy way to learn about compilers.
+xjs is collection of small tools which make learning about and writing compilers easy. It also has the goal of being the simplest way of writing the latest Javascript (ES6+).
+
+xjs is composed of two parts:
+
+1. an Elixir library which uses the ast produced by the Elixir compiler to generate a json syntax tree understood by Javascript tooling (and compilers)
+2. a Javascript library (and webpack loader) which uses Babel to generate ES5 (read: old but cross-platform JS) 
+
+Importantly, the two parts can be used in isolation. You may use the same techniques (from step 1) to generate Go or LaTeX or Python or a number of other languages. Elixir syntax is flexible, the tooling is excellent, and it is perfect for writing compilers, being a functional language. Or, you could generate your own Javascript syntax tree in json format (jst) and load it into webpack and compile it to Javascript.
+
+The code has an emphasis on being concise and readable (under 250 lines of code).
 
 ## NOTICE 
 
@@ -12,18 +21,16 @@ xjs -> jst -> es6 -> es5
 
 
 ```elixir
-def run() do
-  xjs
-    let print = fn x ->
-      console.log x
-      return x
-    end
-
-    print "hey!"
-     
-    # pipe
-    "hey!" |> print
+xjs
+  let print = fn x ->
+    console.log x
+    return x
   end
+
+  print "hey!"
+     
+  # pipe
+  "hey!" |> print
 end
 ```
 
@@ -39,7 +46,7 @@ Honestly, this is a bit of a hack. But not all hacks are bad.
 
 ### 1. xjs
 
-xjs is an Elixir macro and a mix task. It works very simply: it takes an Elixir ast (as produced by the Elixir compiler) and produdes a jst, or a Javascript Syntax Tree. This gives us the full range of Elixir syntax with a minimum of code, as Elixir is particularly well-suited to writing compilers with its pattern matching. See [lib/xjs.xjs](../lib/xjs.xjs): 
+xjs is an Elixir macro and a mix task. It works very simply: it takes an Elixir ast (as produced by the Elixir compiler) and produdes a jst, or a Javascript Syntax Tree. See [lib/xjs.xjs](../lib/xjs.xjs): 
 
 ```elixir
 def compile({:if, meta, [test, [do: consequent]]}) do
@@ -59,7 +66,7 @@ end
 Currently, an .xjs file is an Elixir module with a defined run function. See [examples/index.xjs](../examples/index.xjs): 
 
 ```elixir
-def run() do
+def run do
   xjs
     let print = fn x ->
       console.log x
