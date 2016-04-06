@@ -44,7 +44,7 @@ Honestly, this is a bit of a hack. But not all hacks are bad.
 
 ## installation
 
-This has been tested on the wonderful [void Linux](https://voidlinux.eu). It should work fine on a number of other OSes. 
+This has been tested on [Void Linux](http://voidlinux.eu). If you are looking for a modern, clean, simple, BSD-like distro, it's the way to go. xjs should work fine on a number of other OSes. 
 
 1. Make sure Node and npm are installed properly. Also make sure Elixir and mix are installed properly. Use your preferred search engine.
 
