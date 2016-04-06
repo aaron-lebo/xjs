@@ -2,6 +2,10 @@
 
 xjs is an Elixir library along with a few small tools which allow you to write es6* (Javascript) in Elixir. It is intended to be an useful tool as well as an easy way to learn about compilers.
 
+## NOTICE 
+
+This (the documentation especially) is a work in progress.
+
 ## tldr
 
 xjs -> jst -> es6 -> es5 
@@ -213,9 +217,7 @@ print('hey!');
 print('hey!');
 ```
 
-## more
-
-## Installation
+## installation
 
   1. Add xjs to your list of dependencies in `mix.exs`:
 
