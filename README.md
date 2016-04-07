@@ -1,6 +1,6 @@
 # xjs 
 
-xjs is collection of small tools which make learning about and writing compilers easy. It also has the goal of being the simplest way to write the latest Javascript (ES6+).
+xjs is a collection of small tools which make learning about and writing compilers easy. It also has the goal of being the simplest way to write the latest Javascript (ES6+).
 
 xjs is composed of two parts:
 
